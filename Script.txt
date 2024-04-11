@@ -1,0 +1,29 @@
+MERN 
+
+MonogoDB => DataBase
+NodeJs => Building / Creating Servers (Runtime Env)
+ExpressJs =>One Library >> nodeJs >> Complexity of the reduces (The instructions are very clear and descriptive in nature)
+ReactJs => Building Front End (JS Library)
+TailWind
+DevOps
+
+
+3 tire Arch:
+  >> ReactJs            =>   FrontEnd     Web/Browser
+  
+  >> NodeJs(ExpressJs)  =>   Servers       BackEnd
+
+  >> MonogoDB           =>   DataBase
+
+
+
+
+  How NodeJs works ?
+
+  >> Server is always created on powerful m/c
+  >> Server Response Status Code https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+  
+
+  HTML & CSS >> https://css-tricks.com/
+
+  Js >> https://javascript.info/  (or) https://www.javascript.com/
