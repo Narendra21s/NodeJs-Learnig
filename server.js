@@ -59,18 +59,22 @@ http
          .on('end',()=>{
             body = JSON.parse(body);
             let deleteThisItem = body.item;
-            // for(let i=0;i<todoList.length;i++){
-            //    if(todoList[i] === deleteThisItem){
-            //       todoList.splice(i,1);
-            //       break;
-            //    }
-            // }
-            todoList.find((ele,index)=>{
-            if(ele === deleteThisItem){
-               todoList.slice(index,1);
+            for(let i=0;i<todoList.length;i++){
+               if(todoList[i] === deleteThisItem){
+                  todoList.splice(i,1);
+                  break;
+               }
+               else{
+                  console.log("Error: Match not found");
+                  break;
+               }
             }
+            // todoList.find((ele,index)=>{
+            // if(ele === deleteThisItem){
+            //    todoList.slice(index,1);
+            // }
 
-            })
+            // })
          })
       }
       else{
