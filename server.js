@@ -12,7 +12,7 @@ const port=8001;
    // >> PUT    : Full update
 
 
-   const todoList=['Sri',"josh",'suman'];
+   const todoList=['Sri',"josh",'suman','nani'];
 
 http
 .createServer((req,res)=>{ // call back fun
