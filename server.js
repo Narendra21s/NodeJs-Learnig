@@ -1,101 +1,43 @@
-const http=require("http");
+const express=require("express");
+
+const app=express();
+
+app.use(express.json());
 
 const port=8001;
 
+const todoList=['suman','radhika','air','water'];
 
+// http://localhost:8001/todos
+app.get("/todos",(req,res)=>{
+    // res.writeHead(200);
+    // res.write(todolist);
+   res.status(200).send(todoList);
+});
+app.post("/todos",(req,res)=>{
+    let newTodoItem=req.body.name;
+    todoList.push(newTodoItem);
+    res.status(201).send({message:"task Added successfully"});
+});
+app.delete("/todos",(res,req)=>{
+    const deletItem=req.body.name;
+    todoList.find((ele,index)=>{
+        if(ele === deletItem){
+            todoList.slice(index,1);
 
-// http Methods
-   // >> GET    : Getting the data from database
-   // >> POST   : post the  data to database
-   // >> DELETE : delete data from database 
-   // >> PATCH  : Updating certain fields
-   // >> PUT    : Full update
+        }
+        res.status(202).send({message:`deleted successfully item ${req.body.name}`});
+    });
+    });
 
-
-   const todoList=['Sri',"josh",'suman','nani'];
-
-http
-.createServer((req,res)=>{ // call back fun
-   // res.writeHead(200,{"COntent-Type":"text/html"});
-   // res.write("<h1>The server is running :-) </h1>");
-   // res.end();
-
-   const {method,url} = req;
-   if(url === '/todos'){
-      if(method === "GET"){
-         res.writeHead(200,{"Content-Type":"text/html"});
-         res.write(todoList.toString());
-         
-      }
-
-      else if(method === "POST"){
-          let body="";
-          req
-            .on('error',(err)=>{
-             console.log(err);
-          }).on('data',(chunk)=>{
-            body += chunk;
-            // console.log(chunk);
-          }).on('end',()=>{
-            body = JSON.parse(body);
-
-            // adding data here
-            let newTodo=todoList;
-            newTodo.push(body.item);
-            // console.log("data",body);
-          })
-      }
-      else if(method === "DELETE"){
-         let body="";
-         req
-         .on('error',(err)=>{
-            console.error(err);
-         })
-         .on('data',(chunk)=>{
-            body += chunk;
-            
-            
-         })
-         .on('end',()=>{
-            body = JSON.parse(body);
-            let deleteThisItem = body.item;
-            for(let i=0;i<todoList.length;i++){
-               if(todoList[i] === deleteThisItem){
-                  todoList.splice(i,1);
-                  break;
-               }
-               else{
-                  console.log("Error: Match not found");
-                  break;
-               }
-            }
-            // todoList.find((ele,index)=>{
-            // if(ele === deleteThisItem){
-            //    todoList.slice(index,1);
-            // }
-
-            // })
-         })
-      }
-      else{
-         res.writeHead(501);     
-      }
-   }
-   else{
-      res.write(404);  
-   }
-   res.end();
-  
+app.all("*",(req,res)=>{
+       res.status(501).send();  
+});
    
-})
-.listen(port,()=>{  //call back fun
-   console.log(`The port creating is successful ${port}`);
-})
+app.listen(port,()=>{
+    console.log(`Node Server running on port ${port}`);
+});
 
 
-// http://localhost:8081
 
-// Routes
-// http://localhost:8081/home
-// http://localhost:8081/about
-// http://localhost:8081/contactUs
+
